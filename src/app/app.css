@@ -1,0 +1,19 @@
+.rouge {
+    color: tomato
+}
+.rouge-blanc {
+    background-color:  tomato;
+    color: white;
+}
+
+.bleu {
+    color: dodgerblue
+}
+.bleu-blanc {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.gras {
+    font-weight: bold;
+}
