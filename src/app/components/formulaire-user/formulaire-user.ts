@@ -21,3 +21,17 @@ export class FormulaireUserComponent {
 
   }
 }
+// ngOnInit(): void {
+//     // 🔹 Utiliser la même clé que dans AuthComponent
+//     // si tu fais localStorage.setItem('isConnected', 'true')
+//     this.isLoggedIn = localStorage.getItem('isConnected') === 'true';
+
+//     this.formationForm = this.fb.group({
+//       nom: ['', Validators.required],
+//       description: ['']
+//     });
+
+//     if (this.isLoggedIn) {
+//       this.loadFormations();
+//     }
+//   }
