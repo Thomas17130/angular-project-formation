@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './formation.css'
 })
 export class FormationComponent implements OnInit {
-
+  erreur: String | null = null
   formations: Formation[] = [];
   formationForm!: FormGroup;
 
@@ -64,7 +64,11 @@ export class FormationComponent implements OnInit {
       next: (created: Formation) => {
         this.formations.push(created);
         this.formationForm.reset();
-      }
+      },
+      error: err => {
+      console.log('erreur')
+      this.erreur = "le nom est obligatoire"
+    }
     });
   }
 
