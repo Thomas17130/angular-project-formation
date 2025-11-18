@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { FormGroup, NgForm, ReactiveFormsModule} from '@angular/forms';
+import { FormGroup, FormsModule, NgForm, ReactiveFormsModule} from '@angular/forms';
 import { Formation } from '../../models/formation';
 import { CommonModule } from '@angular/common';
+import { FormationService } from '../../services/formation';
 
 @Component({
   selector: 'app-formation',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './formation.html',
   styleUrl: './formation.css'
 })
@@ -19,9 +20,13 @@ export class FormationComponent {
   error: string | null = null;
   isLoggedIn = false;
 
+  constructor(private fs: FormationService) {
+
+  }
 
   ajouter(form: NgForm) {
     this.formations.push({ ...this.formation });
+    this.fs.addFormation(form.value)
     // this.personnes.push(form.value);
     console.log(form.value);
     // this.personne = {}

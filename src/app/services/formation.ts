@@ -7,6 +7,7 @@ import { environment } from '../../environnement/environnement.devlopments'; // 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FormationService {
 
   path = 'formations'; // par exemple
