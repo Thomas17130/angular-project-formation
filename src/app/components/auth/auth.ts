@@ -4,14 +4,16 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { JwtService } from '../../services/jwt';
 import { UserComponent } from '../user/user';
+import { RegisterComponent } from "../register/register"; 
 
 @Component({
   selector: 'app-auth',
-  imports: [FormsModule],
+  imports: [FormsModule, RegisterComponent],
   templateUrl: './auth.html',
   styleUrl: './auth.css'
 })
 export class AuthComponent {
+
   user: User = {}
   erreur: String | null = null
   constructor(private router: Router, private jwtService: JwtService) { }
@@ -26,7 +28,7 @@ export class AuthComponent {
         localStorage.setItem('accessToken', res.accessToken ?? '')
         localStorage.setItem('refreshToken', res.refreshToken ?? '')
         localStorage.setItem('user', JSON.stringify(this.user))
-        const url = this.router.createUrlTree(['/'])
+        const url = this.router.createUrlTree([''])
         this.router.navigateByUrl(url)
       },
       error: err => {
@@ -37,5 +39,9 @@ export class AuthComponent {
 
     })
 
+  }
+  register(){
+    const url = this.router.createUrlTree(['/register'])
+    this.router.navigateByUrl(url)
   }
 }

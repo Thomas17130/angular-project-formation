@@ -3,7 +3,6 @@ import { environment } from '../../environnement/environnement.devlopments';
 import { inject } from '@angular/core';
 import { JwtService } from '../services/jwt';
 import { User } from '../models/user';
-import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 export const userInterceptor: HttpInterceptorFn = (req, next) => {

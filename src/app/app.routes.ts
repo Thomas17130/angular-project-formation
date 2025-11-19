@@ -4,7 +4,6 @@ import { UserComponent } from './components/user/user';
 import { HomeComponent } from './components/home/home';
 import { AuthComponent } from './components/auth/auth';
 import { RegisterComponent } from './components/register/register';
-import { FormulaireUserComponent } from './components/formulaire-user/formulaire-user';
 
 export const routes: Routes = [
         { path: '', component: HomeComponent },
@@ -12,5 +11,5 @@ export const routes: Routes = [
         { path: 'auth', component: AuthComponent },
         { path: 'register', component: RegisterComponent },
         { path: 'user', component: UserComponent },
-        { path: 'formulaire-user', component: FormulaireUserComponent },
+
 ];

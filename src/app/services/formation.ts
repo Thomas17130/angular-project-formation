@@ -9,6 +9,9 @@ import { environment } from '../../environnement/environnement.devlopments'; // 
 })
 
 export class FormationService {
+  getFormations() {
+    throw new Error('Method not implemented.');
+  }
 
   path = 'formations'; // par exemple
 
@@ -16,16 +19,16 @@ export class FormationService {
 
   // Récupérer les formations de l'utilisateur connecté
   getFormation(): Observable<Formation[]> {
-    return this.http.get<Formation[]>(`${environment.BACKEND_URL}/${this.path}`);
+    return this.http.get<Formation[]>(`${environment.BACKEND_URL}/formation`);
   }
 
   // Ajouter une formation
   addFormation(formation: Formation): Observable<Formation> {
-    return this.http.post<Formation>(`${environment.BACKEND_URL}/${this.path}`, formation);
+    return this.http.post<Formation>(`${environment.BACKEND_URL}/formation`, formation);
   }
 
   // Supprimer une formation
   deleteFormation(id: number): Observable<Formation> {
-    return this.http.delete<Formation>(`${environment.BACKEND_URL}/${this.path}/${id}`);
+    return this.http.delete<Formation>(`${environment.BACKEND_URL}/formation/${id}`);
   }
 }

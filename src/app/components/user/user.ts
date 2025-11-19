@@ -3,10 +3,11 @@ import { JwtService } from '../../services/jwt';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthComponent } from '../auth/auth';
+import { RegisterComponent } from "../register/register";
 
 @Component({
   selector: 'app-user',
-  imports: [AuthComponent],
+  imports: [AuthComponent, RegisterComponent],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })

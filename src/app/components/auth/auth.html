@@ -1,23 +1,31 @@
 <h2>Page d'authentification</h2>
-<form (ngSubmit)="seConnecter()" #form="ngForm">
-    <div>
-        <label for="username">Nom d'utilisateur</label>
-        <input type="text" id="username" [(ngModel)]="user.username" name="username">
-    </div>
-    <div>
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" [(ngModel)]="user.password" name="password">
-    </div>
+<div>
+    <form (ngSubmit)="seConnecter()" #form="ngForm">
 
-    <div>
-        <button class="btn">
-            <i class="fa-solid fa-right-to-bracket"></i>
-        </button>
-    </div>
-</form>
+            <div class="d-flex flex-column align-items-center mb-3">
+                <label for="username">Nom d'utilisateur</label>
+                <input class="card col-3"type="text" id="username" [(ngModel)]="user.username" name="username">
+                <label for="password">Mot de passe</label>
+                <input class="card col-3" type="password" id="password" [(ngModel)]="user.password" name="password">
+            </div>
 
-@if (erreur) {
-<div class="row alert alert-danger">
-    {{ erreur }}
+            <div>
+                <button class="btn btn-primary" [disabled]="form.invalid">
+                    Se connecter
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </button>
+            </div>
+
+    </form>
+
+    @if (erreur) {
+    <div class="row alert alert-danger">
+        {{ erreur }}
+    </div>
+    }
+    <h3>Pas encore de compte ?</h3>
+    <form (ngSubmit)="register()" #form="ngForm">
+
+    </form>
+    <app-register></app-register>
 </div>
-}

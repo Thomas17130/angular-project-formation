@@ -1,42 +1,19 @@
-<div class="container mt-5">
-  <h2 class="mb-4 text-center">Créer un compte</h2>
+<h3>{{ title }}</h3>
+<form (ngSubmit)="enregistrer(form)" #form="ngForm">
 
-  <form #f="ngForm" (ngSubmit)="onRegister(f)" class="mx-auto" style="max-width: 400px;">
-
+  <div class="d-flex flex-column align-items-center mb-3">
+        <label for="nom">Nom</label>
+        <input class="card col-3" type="text" id="nom" [(ngModel)]="user.username" name="nom" required minlength="2" #nom="ngModel">
+        <span [hidden]="nom.valid || nom.pristine">
+            Le nom est obligatoire
+        </span>
+        <label for="password">Mot de passe</label>
+        <input class="card col-3" type="password" id="createPassword" [(ngModel)]="user.password" name="password">
+    </div>
     <div class="mb-3">
-      <label class="form-label" for="username">Nom d'utilisateur</label>
-      <input
-        id="username"
-        name="username"
-        type="text"
-        class="form-control"
-        [(ngModel)]="user.username"
-        required
-        minlength="3">
+        <button class="btn btn-primary" [disabled]="form.invalid">
+            Enregistrer
+        </button> 
     </div>
 
-    <div class="mb-3">
-      <label class="form-label" for="email">Email</label>
-      <input id="email"name="email"type="email"class="form-control"required>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label" for="password">Mot de passe</label>
-      <input id="password"name="password"type="password"class="form-control"[(ngModel)]="user.password"required minlength="6">
-    </div>
-
-    <button
-      class="btn btn-primary w-100"
-      type="submit"
-      [disabled]="f.invalid">
-      Créer le compte
-    </button>
-
-    <div *ngIf="erreur" class="alert alert-danger mt-3">
-      {{ erreur }}
-    </div>
-    <div *ngIf="success" class="alert alert-success mt-3">
-      {{ success }}
-    </div>
-  </form>
-</div>
+</form>
