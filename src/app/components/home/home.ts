@@ -8,5 +8,6 @@ import { FormationComponent } from "../formation/formation";
   styleUrl: './home.css',
 })
 export class HomeComponent {
-  @ViewChild(FormationComponent) fils!: FormationComponent
+  @ViewChild(HomeComponent) fils!: FormationComponent
+formation: any;
 }

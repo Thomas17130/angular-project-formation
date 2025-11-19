@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormsModule, NgForm, ReactiveFormsModule} from '@angular/forms';
 import { Formation } from '../../models/formation';
 import { CommonModule } from '@angular/common';
@@ -11,10 +11,13 @@ import { FormationService } from '../../services/formation';
   styleUrl: './formation.css'
 })
 export class FormationComponent {
+  @Input() title = ''
+  @Input() formation: Formation = {}
+  @Output() formationChange =  new EventEmitter<Formation>();
+
 
   erreur: String | null = null
   formations: Formation[] = [];
-  formation: Formation = {};
   formationForm!: FormGroup;
 
   loading = false;
@@ -41,5 +44,6 @@ export class FormationComponent {
         this.error = "il n'y a pas de formations";
       }
     });
+    this.formationChange.emit(this.formation)
   }
 }

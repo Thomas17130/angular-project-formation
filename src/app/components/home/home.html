@@ -4,4 +4,15 @@
 <p>
     Nos dernieres formations :
 </p>
-<app-formation></app-formation>
+<div class="d-flex justify-content-evenly">
+  @for (f of formation; track $index) {
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ f.nom }}</h5>
+        <p class="card-text">{{ f.description }}</p>
+      </div>
+    </div>
+  } @empty {
+    <div class="alert alert-warning">Liste vide !</div>
+  }
+</div>
