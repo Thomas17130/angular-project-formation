@@ -16,7 +16,7 @@ export class FormationComponent {
   @Output() formationChange =  new EventEmitter<Formation>();
 
 
-  erreur: String | null = null
+  erreur: string | null = null
   formations: Formation[] = [];
   formationForm!: FormGroup;
 
@@ -36,14 +36,15 @@ export class FormationComponent {
   }
   
   load(){
-    this.fs.getFormation().subscribe({
+    this.fs.getFormations().subscribe({
        next: res => {
         localStorage.setItem('isConnected', 'true')
+        // Assignez le tableau de formations à votre propriété de composant
+        this.formations = res;
       },
       error: err => {
         this.error = "il n'y a pas de formations";
       }
     });
-    this.formationChange.emit(this.formation)
   }
 }

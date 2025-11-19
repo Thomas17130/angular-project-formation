@@ -9,17 +9,14 @@ import { environment } from '../../environnement/environnement.devlopments'; // 
 })
 
 export class FormationService {
-  getFormations() {
-    throw new Error('Method not implemented.');
-  }
 
   path = 'formations'; // par exemple
 
   constructor(private http: HttpClient) {}
 
   // Récupérer les formations de l'utilisateur connecté
-  getFormation(): Observable<Formation[]> {
-    return this.http.get<Formation[]>(`${environment.BACKEND_URL}/formation`);
+  getFormations(): Observable<Formation[]> {
+    return this.http.get<Formation[]>(`${environment.BACKEND_URL}/${this.path}`);
   }
 
   // Ajouter une formation

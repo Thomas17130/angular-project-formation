@@ -1,18 +1,20 @@
-<p ngClass="text-primary my-5">
-    Bienvenue dans mon appli de formation !
-</p>
-<p>
+
+<h1>
     Nos dernieres formations :
-</p>
+</h1>
 <div class="d-flex justify-content-evenly">
   @for (f of formation; track $index) {
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{ f.nom }}</h5>
+        <h2 class="card-title">{{ f.nom }}</h2>
         <p class="card-text">{{ f.description }}</p>
       </div>
     </div>
   } @empty {
-    <div class="alert alert-warning">Liste vide !</div>
+    <div class="alert alert-warning">
+        <span>
+            Liste vide !
+        </span>
+    </div>
   }
 </div>

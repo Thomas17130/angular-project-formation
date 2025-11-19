@@ -3,7 +3,7 @@ import { FormationComponent } from "../formation/formation";
 
 @Component({
   selector: 'app-home',
-  imports: [FormationComponent],
+  imports: [],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

@@ -7,34 +7,38 @@
     </ul>
     <div class="d-flex flex-column align-items-center mb-3">
         <label for="nom">Nom</label>
-        <input class="card col-3" type="text" id="nom" [(ngModel)]="formation.nom" name="nom" required minlength="2" #nom="ngModel">
+        <input class="card col-3" type="text" id="nom" [(ngModel)]="formation.nom" name="nom" required minlength="2"
+            #nom="ngModel">
         <span [hidden]="nom.valid || nom.pristine">
             Le nom est obligatoire
         </span>
         <label for="prenom">Description</label>
-        <input class="card col-3" type="text" id="description" [(ngModel)]="formation.description" name="description" required minlength="2"
-            #description="ngModel">
+        <input class="card col-3" type="text" id="description" [(ngModel)]="formation.description" name="description"
+            required minlength="2" #description="ngModel">
         <span [hidden]="description.valid || description.pristine">
             La description est obligatoire
         </span>
     </div>
     <div>
-        <button ngClass="btn btn-primary" [disabled]="form.invalid">
+        <button Class="btn btn-primary" [disabled]="form.invalid">
             Ajouter
         </button>
     </div>
 </form>
 <h3>Liste des formation</h3>
 <div class="d-flex justify-content-evenly">
-  @for (f of formations; track $index) {
+    @for (f of formations; track $index) {
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ f.nom }}</h5>
-        <p class="card-text">{{ f.description }}</p>
-      </div>
+        <div class="card-body">
+            <h3 class="card-title">{{ f.nom }}</h3>
+            <p class="card-text">{{ f.description }}</p>
+        </div>
     </div>
-  } @empty {
-    <div class="alert alert-warning">Liste vide !</div>
-  }
+    } @empty {
+    <div class="alert alert-warning">
+        <span>
+            Liste vide !
+        </span>
+    </div>
+    }
 </div>
-

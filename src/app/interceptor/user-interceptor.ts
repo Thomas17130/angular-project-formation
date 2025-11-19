@@ -28,7 +28,7 @@ export const userInterceptor: HttpInterceptorFn = (req, next) => {
     console.warn('[INTERCEPTOR] Aucun accessToken -> requête envoyée sans Authorization.');
     return next(req);
   }
-
+  console.log(jwtService.isValid(accessToken));
   // accessToken encore valide
   if (jwtService.isValid(accessToken)) {
     console.log('[INTERCEPTOR] Access token valide -> ajout du header Authorization.');
