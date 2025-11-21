@@ -6,21 +6,27 @@
         <li>Etat : {{ form.status }}</li>
     </ul>
     <div class="d-flex flex-column align-items-center mb-3">
-        <label for="nom">Nom</label>
-        <input class="card col-3" type="text" id="nom" [(ngModel)]="formation.nom" name="nom" required minlength="2"
-            #nom="ngModel">
-        <span [hidden]="nom.valid || nom.pristine">
-            Le nom est obligatoire
+        <label for="titre">titre</label>
+        <input class="card col-3" type="text" id="titre" [(ngModel)]="formation.titre" name="titre" required
+            minlength="2" #titre="ngModel">
+        <span [hidden]="titre.valid || titre.pristine">
+            Le titre est obligatoire
         </span>
-        <label for="prenom">Description</label>
-        <input class="card col-3" type="text" id="description" [(ngModel)]="formation.description" name="description"
-            required minlength="2" #description="ngModel">
-        <span [hidden]="description.valid || description.pristine">
-            La description est obligatoire
+        <label for="duree">Durée</label>
+        <input class="card col-3" type="number" id="duree" [(ngModel)]="formation.duree" name="duree" required
+            minlength="2" #duree="ngModel">
+        <span [hidden]="duree.valid || duree.pristine">
+            La durée est obligatoire
+        </span>
+        <label for="dateDebut">Date de début</label>
+        <input class="card col-3" type="date" id="dateDebut" [(ngModel)]="formation.dateDebut" name="dateDebut" required
+            minlength="2" #dateDebut="ngModel">
+        <span [hidden]="dateDebut.valid || dateDebut.pristine">
+            La date de debut est obligatoire
         </span>
     </div>
     <div>
-        <button Class="btn btn-primary" [disabled]="form.invalid">
+        <button Class="btn btn-primary" [disabled]="form.invalid" type="submit">
             Ajouter
         </button>
     </div>
@@ -30,9 +36,15 @@
     @for (f of formations; track $index) {
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title">{{ f.nom }}</h3>
-            <p class="card-text">{{ f.description }}</p>
+            <h3 class="card-title">titre : {{ f.titre }}</h3>
+            <p class="card-text">durée : {{ f.duree }} semaines</p>
+            <p class="card-text">date de début : {{ f.dateDebut }}</p>
         </div>
+        @if (f.id !== undefined) {
+            <button Class="btn btn-primary" (click)="supprimer(f.id)">
+                Supprimer
+            </button>
+        }
     </div>
     } @empty {
     <div class="alert alert-warning">

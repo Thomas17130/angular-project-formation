@@ -3,7 +3,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { JwtService } from '../../services/jwt';
-import { UserComponent } from '../user/user';
 import { RegisterComponent } from "../register/register"; 
 
 @Component({
@@ -16,6 +15,7 @@ export class AuthComponent {
 
   user: User = {}
   erreur: String | null = null
+  viewMode: 'login' | 'register' = 'login';
   constructor(private router: Router, private jwtService: JwtService) { }
 
 
@@ -40,8 +40,7 @@ export class AuthComponent {
     })
 
   }
-  register(){
-    const url = this.router.createUrlTree(['/register'])
-    this.router.navigateByUrl(url)
+  setViewMode(mode: 'login' | 'register') {
+    this.viewMode = mode;
   }
 }

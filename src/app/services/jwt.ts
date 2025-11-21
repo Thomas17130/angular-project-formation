@@ -10,10 +10,6 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class JwtService {
-  register(user: User) {
-    throw new Error('Method not implemented.');
-  }
-
   constructor(private http: HttpClient) { }
 
   getTokens(user: User): Observable<Jwt> {
@@ -21,7 +17,7 @@ export class JwtService {
   }
   isValid(token: string): boolean {
     const now = Date.now()
-    const exp = (jwtDecode(token).exp ?? 0) * 1000
+    const exp = (jwtDecode(token).exp ?? 0) * 500000
     return exp > now;
   }
 }

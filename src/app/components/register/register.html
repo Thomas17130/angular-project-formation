@@ -1,14 +1,14 @@
-<h3>{{ title }}</h3>
-<form (ngSubmit)="enregistrer(form)" #form="ngForm">
+<h3>S'inscrire</h3>
+<form (ngSubmit)="register()" #form="ngForm">
 
   <div class="d-flex flex-column align-items-center mb-3">
         <label for="nom">Nom</label>
-        <input class="card col-3" type="text" id="nom" [(ngModel)]="user.username" name="nom" required minlength="2" #nom="ngModel">
+        <input class="card col-3" type="text" id="nom" [(ngModel)]="newUser.username" name="nom" required minlength="2" #nom="ngModel">
         <span [hidden]="nom.valid || nom.pristine">
             Le nom est obligatoire
         </span>
         <label for="password">Mot de passe</label>
-        <input class="card col-3" type="password" id="createPassword" [(ngModel)]="user.password" name="password">
+        <input class="card col-3" type="password" id="createPassword" [(ngModel)]="newUser.password" name="password">
     </div>
     <div class="mb-3">
         <button class="btn btn-primary" [disabled]="form.invalid">

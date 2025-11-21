@@ -1,7 +1,8 @@
 export class Formation {
   id?: number;
-  nom?: string;
-  description?: string;
+  titre?: string;
+  duree?: number;
+  dateDebut?: Date;
   // tu peux ajouter d'autres champs si besoin
   // startDate?: Date;
   // endDate?: Date;

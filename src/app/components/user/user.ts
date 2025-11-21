@@ -15,7 +15,7 @@ export class UserComponent {
     @Input() token: string | null = null
     @ViewChild(AuthComponent) fils!: AuthComponent
     user: User = {}
-  erreur: String | null = null
+  erreur: string | null = null
   constructor(private router: Router, private jwtService: JwtService) { }
 
 }

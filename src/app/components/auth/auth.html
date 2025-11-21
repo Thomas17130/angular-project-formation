@@ -1,31 +1,43 @@
 <h2>Page d'authentification</h2>
 <div>
-    <form (ngSubmit)="seConnecter()" #form="ngForm">
-
-            <div class="d-flex flex-column align-items-center mb-3">
-                <label for="username">Nom d'utilisateur</label>
-                <input class="card col-3"type="text" id="username" [(ngModel)]="user.username" name="username">
-                <label for="password">Mot de passe</label>
-                <input class="card col-3" type="password" id="password" [(ngModel)]="user.password" name="password">
-            </div>
-
-            <div>
-                <button class="btn btn-primary" [disabled]="form.invalid">
-                    Se connecter
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                </button>
-            </div>
-
-    </form>
-
-    @if (erreur) {
-    <div class="row alert alert-danger">
-        {{ erreur }}
-    </div>
-    }
-    <h3>Pas encore de compte ?</h3>
-    <form (ngSubmit)="register()" #form="ngForm">
-
-    </form>
-    <app-register></app-register>
+    <button class="btn btn-primary" (click)="setViewMode('login')">
+        Connexion
+        <i class="fa-solid fa-right-to-bracket"></i>
+    </button>
+    <button class="btn btn-primary" (click)="setViewMode('register')">
+        Inscription
+        <i class="fa-solid fa-right-to-bracket"></i>
+    </button>
 </div>
+@if(viewMode === 'login') {
+    <div>
+        <form (ngSubmit)="seConnecter()" #form="ngForm">
+                <div class="d-flex flex-column align-items-center mb-3">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input class="card col-3"type="text" id="username" [(ngModel)]="user.username" name="username">
+                    <label for="password">Mot de passe</label>
+                    <input class="card col-3" type="password" id="password" [(ngModel)]="user.password" name="password">
+                </div>
+
+                <div>
+                    <button class="btn btn-primary" [disabled]="form.invalid">
+                        Se connecter
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </button>
+                </div>
+
+        </form>
+
+        @if (erreur) {
+        <div class="row alert alert-danger">
+            {{ erreur }}
+        </div>
+        }
+    </div>
+}
+@else if (viewMode === 'register') {
+    <div>
+        <h3>Pas encore de compte ?</h3>
+        <app-register></app-register>
+    </div>
+}

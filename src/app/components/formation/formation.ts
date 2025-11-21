@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { FormGroup, FormsModule, NgForm, ReactiveFormsModule} from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { Formation } from '../../models/formation';
 import { CommonModule } from '@angular/common';
 import { FormationService } from '../../services/formation';
@@ -10,11 +10,10 @@ import { FormationService } from '../../services/formation';
   templateUrl: './formation.html',
   styleUrl: './formation.css'
 })
-export class FormationComponent {
-  @Input() title = ''
-  @Input() formation: Formation = {}
-  @Output() formationChange =  new EventEmitter<Formation>();
-
+export class FormationComponent implements OnInit {
+  //@Input() nom = ''
+  formation: Formation = {}
+  @Output() formationChange = new EventEmitter<Formation>();
 
   erreur: string | null = null
   formations: Formation[] = [];
@@ -24,20 +23,28 @@ export class FormationComponent {
   error: string | null = null;
   isLoggedIn = false;
 
-  constructor(private fs: FormationService) {}
+  constructor(private fs: FormationService) { }
+  ngOnInit(): void {
+    this.load();
+  }
 
   ajouter(form: NgForm) {
     this.formations.push({ ...this.formation });
-    this.fs.addFormation(form.value)
+    this.fs.addFormation(form.value).subscribe({
+      next: res => {
+        console.log('Formation ajoutée avec succès');
+        this.load();
+      }
+    })
 
     console.log(form.value);
- 
+
     form.reset()
   }
-  
-  load(){
+
+  load() {
     this.fs.getFormations().subscribe({
-       next: res => {
+      next: res => {
         localStorage.setItem('isConnected', 'true')
         // Assignez le tableau de formations à votre propriété de composant
         this.formations = res;
@@ -46,5 +53,13 @@ export class FormationComponent {
         this.error = "il n'y a pas de formations";
       }
     });
+  }
+  supprimer(id: number) {
+    this.fs.deleteFormation(id).subscribe({
+      next: res => {
+        console.log('Formation supprimée avec succès');
+        this.load();
+      }
+    })
   }
 }

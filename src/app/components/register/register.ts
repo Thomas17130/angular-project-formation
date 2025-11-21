@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user';
 import { User } from '../../models/user';
-import { UserComponent } from '../user/user';
-import { Router } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms';
+import { RouterLink } from "@angular/router";
 import { JwtService } from '../../services/jwt';
+import { Router } from '@angular/router';
+import { RegisterService } from '../../services/register';
 
 @Component({
   selector: 'app-register',
@@ -12,35 +14,22 @@ import { JwtService } from '../../services/jwt';
   styleUrl: './register.css'
 })
 export class RegisterComponent {
-  @Input() title = ''
-  @Input() user: User = {}
-  @Output() userChange = new EventEmitter<User>();
-  @ViewChild(RegisterComponent) fils!: UserComponent
+  newUser: User = {}
 
-  erreur: String | null = null
-  constructor(private router: Router, private jwtService: JwtService) { }
-
-  enregistrer(form: NgForm) {
-        this.user.grantType = 'PASSWORD'
-    this.jwtService.getTokens(this.user).subscribe({
-      next: res => {
-        localStorage.setItem('isConnected', 'true')
-        localStorage.setItem('accessToken', res.accessToken ?? '')
-        localStorage.setItem('refreshToken', res.refreshToken ?? '')
-        localStorage.setItem('user', JSON.stringify(this.user))
-        const url = this.router.createUrlTree([''])
-        this.router.navigateByUrl(url)
-      },
-      error: err => {
-        console.log('erreur')
-        this.erreur = "Identifiants incorrects"
-      }
-
-
-    })
-    this.userChange.emit(this.user)
-    form.reset()
+  constructor(private router: Router, private registerService: RegisterService) {
 
   }
-
+  register() {
+    this.registerService.register(this.newUser).subscribe({
+      next: res => {
+        console.log('Inscription réussie');
+        const url = this.router.createUrlTree(['/auth']);
+        this.router.navigateByUrl(url);
+      }
+    });
+    //console.log(form.value);
+  }
+  // supprimer(ind: number) {
+  //   this.us.remove(ind)
+  // }
 }

@@ -1,5 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormationComponent } from "../formation/formation";
+import { FormationService } from '../../services/formation';
+import { Formation } from '../../models/formation';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,16 @@ import { FormationComponent } from "../formation/formation";
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   @ViewChild(HomeComponent) fils!: FormationComponent
-formation: any;
+  formations: Formation[] = [];
+
+  constructor(private fs : FormationService) { }
+  ngOnInit(): void {
+    this.fs.getLastFormations().subscribe({
+      next: res => {
+        this.formations = res.content;
+      }
+    });
+  }
 }

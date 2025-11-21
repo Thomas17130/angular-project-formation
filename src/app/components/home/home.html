@@ -1,20 +1,20 @@
-
 <h1>
-    Nos dernieres formations :
+  Nos dernieres formations :
 </h1>
 <div class="d-flex justify-content-evenly">
-  @for (f of formation; track $index) {
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title">{{ f.nom }}</h2>
-        <p class="card-text">{{ f.description }}</p>
-      </div>
+  @for (f of formations; track $index) {
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">titre : {{ f.titre }}</h3>
+      <p class="card-text">durée : {{ f.duree }} semaines</p>
+      <p class="card-text">date de début : {{ f.dateDebut }}</p>
     </div>
+  </div>
   } @empty {
-    <div class="alert alert-warning">
-        <span>
-            Liste vide !
-        </span>
-    </div>
+  <div class="alert alert-warning">
+    <span>
+      Liste vide !
+    </span>
+  </div>
   }
 </div>

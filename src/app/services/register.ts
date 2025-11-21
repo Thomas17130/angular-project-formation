@@ -8,18 +8,11 @@ import { environment } from '../../environnement/environnement.devlopments';
 @Injectable({
   providedIn: 'root'
 })
-export class JwtService {
+export class RegisterService {
 
   constructor(private http: HttpClient) {}
 
-  getTokens(user: User): Observable<any> {
-    return this.http.post(`${environment.BACKEND_URL}/authenticate`, user);
-  }
-
-  // 🔹 nouvelle méthode register
-  register(user: User): Observable<any> {
+  register(user: User) {
     return this.http.post(`${environment.BACKEND_URL}/register`, user);
   }
-
-  // éventuellement ton isValid(token: string) ici...
 }

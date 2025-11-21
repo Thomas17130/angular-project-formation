@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { Formation } from '../models/formation';
 import { environment } from '../../environnement/environnement.devlopments'; // à vérifier aussi
 
+interface Page {
+  content: Formation[];
+  size: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,14 +23,18 @@ export class FormationService {
   getFormations(): Observable<Formation[]> {
     return this.http.get<Formation[]>(`${environment.BACKEND_URL}/${this.path}`);
   }
+  // Récupérer les formations de l'utilisateur connecté
+  getLastFormations(): Observable<Page> {
+    return this.http.get<Page>(`${environment.BACKEND_URL}/${this.path}/latest`);
+  }
 
   // Ajouter une formation
   addFormation(formation: Formation): Observable<Formation> {
-    return this.http.post<Formation>(`${environment.BACKEND_URL}/formation`, formation);
+    return this.http.post<Formation>(`${environment.BACKEND_URL}/${this.path}/add`, formation)
   }
 
   // Supprimer une formation
   deleteFormation(id: number): Observable<Formation> {
-    return this.http.delete<Formation>(`${environment.BACKEND_URL}/formation/${id}`);
+    return this.http.delete<Formation>(`${environment.BACKEND_URL}/${this.path}/${id}`);
   }
 }
